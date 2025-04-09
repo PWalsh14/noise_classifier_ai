@@ -1,0 +1,10 @@
+0:chainsaw
+1:clock_tick
+2:crackling_fire
+3:crying_baby
+4:dog
+5:helicopter
+6:rain
+7:rooster
+8:sea_waves
+9:sneezing

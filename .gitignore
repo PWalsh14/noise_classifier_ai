@@ -1,0 +1,17 @@
+# ignore virtual environments
+venv/
+backend/venv/
+
+# dataset and big audio/model files
+ESC-50/
+*.h5
+*.wav
+*.mp4
+*.zip
+
+# system files
+.DS_Store
+.env
+
+# node packages
+node_modules/
