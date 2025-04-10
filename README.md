@@ -19,29 +19,26 @@ A beginner-friendly web application that uses deep learning to classify environm
 
 ## 🏗️ Project Structure
 
-noise-analysis-demo/
-├── backend/                # Flask API backend
-│   ├── app.py              # Main Flask server
-│   └── model/              # Trained CNN model + label map
-│       └── audio_classifier.h5
-│       └── label_map.txt
-│
-├── frontend/               # React frontend
-│   ├── public/
-│   │   └── samples/        # Sample audio files
-│   └── src/
-│       ├── components/     # Reusable UI components (Navbar, GlossaryTerm, etc.)
-│       ├── pages/          # Main views (Home, TryIt, Learn, etc.)
-│       ├── data/           # Central glossary definitions
-│       └── App.jsx         # App routing and layout
-│
-├── .gitignore
-├── README.md
-├── requirements.txt        # Python dependencies
-├── package.json            # Frontend dependencies
-└── prepare_esc10.py        # Script to set up training dataset
 
-
+backend/ – Flask API backend
+app.py – Main server script
+model/ – Trained CNN model and label map
+audio_classifier.h5
+label_map.txt
+frontend/ – React frontend
+public/
+samples/ – Sample audio files
+src/
+components/ – Reusable components (e.g., Navbar, GlossaryTerm)
+pages/ – Main page views (e.g., Home, TryIt, Learn)
+data/ – Glossary definitions
+App.jsx – Main app entry point and routing
+Project Root
+.gitignore
+README.md
+requirements.txt – Python dependencies
+package.json – React frontend dependencies
+prepare_esc10.py – Dataset preparation script 
 
 ---
 
