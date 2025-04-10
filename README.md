@@ -49,6 +49,32 @@ A beginner-friendly web application that uses deep learning to classify environm
 
 ---
 
+🧠 Model Info
+
+This app is powered by a custom-built Convolutional Neural Network (CNN) trained on a subset of the ESC-50 dataset called ESC-10, which contains 10 classes of environmental sounds (e.g., speech, clapping, dog bark, etc.).
+
+🔍 Architecture
+A 2D CNN trained on Mel spectrograms (visual representations of sound)
+Input shape: 128x128x3 spectrogram images
+Layers: Conv2D → MaxPooling → Conv2D → MaxPooling → Dense → Output
+The model treats each sound as an image, learning patterns of pitch and intensity over time.
+
+🧠 Training Details
+Framework: TensorFlow/Keras
+Input: .wav audio → converted to Mel spectrograms
+Output: One of 10 sound classes
+Trained locally using GPU on ESC-10 subset
+📈 Performance
+The model performs well on clean recordings but may struggle with overlapping or noisy sounds
+Confidence scores are shown with predictions to reflect the model's certainty
+⚠️ Limitations
+May misclassify unfamiliar or mixed sounds
+Only recognizes ESC-10 sound categories
+Limited generalization to real-world noisy environments
+
+---
+
+
 ## 📚 Based On
 
 This project is inspired by concepts from Chapter 12 of *Practical Deep Learning for Coders* by Jeremy Howard and Sylvain Gugger  
