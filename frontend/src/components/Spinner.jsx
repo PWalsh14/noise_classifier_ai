@@ -2,9 +2,17 @@
 import React from "react";
 
 const Spinner = ({ text = "Loading..." }) => (
-  <div className="flex items-center justify-center space-x-2 text-indigo-600 text-sm">
-    <svg className="animate-spin h-5 w-5 text-indigo-600" viewBox="0 0 24 24">
-      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+  <div className="flex items-center justify-center space-x-2 text-indigo-600 dark:text-indigo-400 text-sm">
+    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+        fill="none"
+      />
       <path
         className="opacity-75"
         fill="currentColor"

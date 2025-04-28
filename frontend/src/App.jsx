@@ -8,6 +8,8 @@ import Explore from "./pages/Explore";
 import TryIt from "./pages/TryIt";
 import Glossary from "./pages/Glossary";
 import Chatbot from "./pages/Chatbot";
+import ModelInfo from "./pages/ModelInfo";
+import SnapGame from "./pages/SnapGame";
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
           <Route path="/try-it" element={<TryIt />} />
           <Route path="/glossary" element={<Glossary />} />
           <Route path="/chatbot" element={<Chatbot />} />
+          <Route path="/model-info" element={<ModelInfo />} />
+          <Route path="/snap-game" element={<SnapGame />} />
         </Routes>
       </Layout>
     </Router>

@@ -47,15 +47,29 @@ model = tf.keras.models.load_model(MODEL_PATH)
 print("✅ Model loaded")
 model.summary()
 
+
+
 # 🔬 Feature extraction
 def extract_features(file_path):
     y, sr = librosa.load(file_path, sr=22050)
-    mel = librosa.feature.melspectrogram(y=y, sr=sr)
+    
+    # Match training:
+    mel = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=128)
     db = librosa.power_to_db(mel, ref=np.max)
-    img = Image.fromarray(db).resize((128, 128))
-    arr = np.array(img)
-    rgb = np.stack([arr] * 3, axis=-1)
+    db = (db - np.mean(db)) / (np.std(db) + 1e-9)
+
+    # Resize to 128x128 exactly like training
+    if db.shape[1] < 128:
+        db = np.pad(db, ((0, 0), (0, 128 - db.shape[1])), mode='constant')
+    elif db.shape[1] > 128:
+        db = db[:, :128]
+
+    db = db[:128, :]
+
+    rgb = np.stack([db] * 3, axis=-1)  # RGB stack
     return rgb.astype(np.float32)
+
+
 
 # 📊 Spectrogram to base64
 def generate_spectrogram_image(y, sr):
@@ -84,18 +98,26 @@ def predict():
     file = request.files["file"]
     path = os.path.join("uploads", file.filename)
     file.save(path)
+    print("Uploaded:", file.filename)
+
 
     try:
         # Process input image
         features = extract_features(path)
         features = (features - features.min()) / (features.max() - features.min())
         input_data = np.expand_dims(features, axis=0)
+        print("📦 Running prediction using model:", model.name)
 
-        # Predict
+
         predictions = model.predict(input_data)
+        print("Raw predictions:", predictions)
+
+
+        # Final predicted class and confidence
         predicted_class = int(np.argmax(predictions))
         predicted_label = label_map.get(predicted_class, "Unknown")
         confidence = float(np.max(predictions))
+
 
         # Spectrogram image
         y, sr = librosa.load(path, sr=22050)

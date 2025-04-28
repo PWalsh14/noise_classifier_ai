@@ -1,4 +1,3 @@
-// Chatbot.jsx — with guided prompt suggestions
 import React, { useState } from "react";
 
 const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
@@ -72,27 +71,36 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-12">
-      <h1 className="text-3xl font-bold text-indigo-700 mb-6">💬 Ask the AI Tutor</h1>
-      <p className="text-gray-600 mb-4">Ask a question about sound, spectrograms, CNNs, or AI in general. Or choose one below to get started:</p>
+    <div className="max-w-3xl mx-auto px-6 py-12 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300 rounded-lg">
+      <h1 className="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-6">
+        💬 Ask the AI Tutor
+      </h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-4">
+        Ask a question about sound, spectrograms, CNNs, or AI in general. Or choose one below to get started:
+      </p>
 
       <div className="flex flex-wrap gap-2 mb-6">
         {suggestedQuestions.map((q, i) => (
           <button
             key={i}
             onClick={() => handleSuggestionClick(q)}
-            className="bg-indigo-100 hover:bg-indigo-200 text-indigo-700 text-sm px-3 py-1 rounded-full"
+            className="bg-indigo-100 hover:bg-indigo-200 dark:bg-indigo-800 dark:hover:bg-indigo-700 text-indigo-700 dark:text-indigo-100 text-sm px-3 py-1 rounded-full transition"
           >
             {q}
           </button>
         ))}
       </div>
 
-      <div className="bg-white border rounded-lg p-4 shadow min-h-[200px] mb-6 space-y-3 max-h-[400px] overflow-y-auto">
-        {chat.length === 0 && <p className="text-gray-400">Your chat will appear here...</p>}
+      <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4 shadow min-h-[200px] mb-6 space-y-3 max-h-[400px] overflow-y-auto">
+        {chat.length === 0 && (
+          <p className="text-gray-400 dark:text-gray-500">Your chat will appear here...</p>
+        )}
         {chat.map((entry, idx) => (
           <div key={idx} className={entry.role === "user" ? "text-right" : "text-left"}>
-            <p className={`inline-block px-4 py-2 rounded-xl text-sm whitespace-pre-wrap ${entry.role === "user" ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-800"}`}>
+            <p className={`inline-block px-4 py-2 rounded-xl text-sm whitespace-pre-wrap
+              ${entry.role === "user"
+                ? "bg-indigo-600 text-white"
+                : "bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100"}`}>
               {entry.text}
             </p>
           </div>
@@ -105,11 +113,11 @@ const Chatbot = () => {
           placeholder="Ask something..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="flex-grow border border-gray-300 rounded-lg px-4 py-2 text-sm"
+          className="flex-grow border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-4 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
         <button
           type="submit"
-          className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 disabled:opacity-50"
+          className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 disabled:opacity-50 transition"
           disabled={loading}
         >
           {loading ? "..." : "Send"}
